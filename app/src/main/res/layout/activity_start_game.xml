@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartGameActivity">
+
+    <ImageButton
+        android:id="@+id/answerButton7"
+        android:layout_width="126dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerButton4"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/answerButton9"
+        android:layout_width="126dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/answerButton8"
+        app:layout_constraintTop_toBottomOf="@+id/answerButton6"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/answerButton8"
+        android:layout_width="126dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/answerButton7"
+        app:layout_constraintTop_toBottomOf="@+id/answerButton5"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/answerButton6"
+        android:layout_width="126dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/answerButton5"
+        app:layout_constraintTop_toBottomOf="@+id/answerButton3"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/answerButton5"
+        android:layout_width="126dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/answerButton4"
+        app:layout_constraintTop_toBottomOf="@+id/answerButton2"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/scoreTextView"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
+        android:layout_marginBottom="15dp"
+        android:text="Score"
+        app:layout_constraintBottom_toBottomOf="@+id/nextQuestionButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nextQuestionButton"
+        app:layout_constraintVertical_bias="0.923" />
+
+    <TextView
+        android:id="@+id/questionTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="questionTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/answerButton1"
+        android:layout_width="126dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="100dp"
+        android:clickable="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/answerButton4"
+        android:layout_width="126dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answerButton1"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/answerButton2"
+        android:layout_width="126dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="100dp"
+        android:clickable="false"
+        app:layout_constraintStart_toEndOf="@+id/answerButton1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/answerButton3"
+        android:layout_width="126dp"
+        android:layout_height="116dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/answerButton2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/nextQuestionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="15dp"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.93"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
