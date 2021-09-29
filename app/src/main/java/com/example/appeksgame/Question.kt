@@ -1,4 +1,5 @@
 class Question (var id : Int,  var questionText : String,
+
                 var alternative1 : Int,
                 var alternative2 : Int,
                 var alternative3 : Int,
@@ -8,6 +9,7 @@ class Question (var id : Int,  var questionText : String,
                 var alternative7 : Int,
                 var alternative8 : Int,
                 var alternative9 : Int,
+                var backgrund : Int,
                 var currectAnswer: List<Int>
 
 

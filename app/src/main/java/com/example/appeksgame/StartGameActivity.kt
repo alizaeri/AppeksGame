@@ -4,6 +4,7 @@ package com.example.appeksgame
 import Question
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
@@ -12,6 +13,9 @@ import android.widget.Toast
 import java.util.logging.LogManager
 import android.view.View
 import androidx.core.view.postDelayed
+import java.util.Timer
+import kotlin.properties.Delegates
+import java.util.logging.Handler as Handler1
 
 
 class StartGameActivity : AppCompatActivity() {
@@ -29,7 +33,14 @@ class StartGameActivity : AppCompatActivity() {
     lateinit var nextQuestionButton : Button
     var currentQuestion :Question? = null
     val questionList = QuestionList()
-    var numberOfAnswer : Int =1
+    var numberOfAnswer : Int = 1
+
+    //
+
+
+    lateinit var  timerTextView : TextView
+
+
 
 
 
@@ -41,7 +52,7 @@ class StartGameActivity : AppCompatActivity() {
         scoreTextView = findViewById(R.id.scoreTextView)
         scoreTextView.text="0"
         questionTextView = findViewById(R.id.questionTextView)
-        answerButton1= findViewById(R.id.answerButton1) as ImageButton
+        answerButton1= findViewById(R.id.answerButton1)
         answerButton2= findViewById(R.id.answerButton2)
         answerButton3= findViewById(R.id.answerButton3)
         answerButton4= findViewById(R.id.answerButton4)
@@ -51,32 +62,16 @@ class StartGameActivity : AppCompatActivity() {
         answerButton8= findViewById(R.id.answerButton8)
         answerButton9= findViewById(R.id.answerButton9)
         nextQuestionButton =findViewById(R.id.nextQuestionButton)
+        timerTextView=findViewById(R.id.timerTextView)
+
 
 
 
         loadNewQuestion ()
 
-       nextQuestionButton.setOnClickListener(){
-           loadNewQuestion ()
-
-       }
-       /* answerButton1.setOnClickListener{
-
-            checkAnswer()
-            Log.d("check","button pressed")
-
-        }
-
-        */
-        answerButton1.apply {
-            setOnDebouncedClickListener {
-                checkAnswer()
-
-            }
-        }
-
 
     }
+    //användaren kan inte trycka två gånger per alternativ
     class OnDebouncedClickListener(private val delayInMilliSeconds: Long, val action: () -> Unit) : View.OnClickListener {
         var enable = true
 
@@ -89,37 +84,255 @@ class StartGameActivity : AppCompatActivity() {
         }
     }
 
-    fun View.setOnDebouncedClickListener(delayInMilliSeconds: Long = 10000, action: () -> Unit) {
+    fun View.setOnDebouncedClickListener(delayInMilliSeconds: Long = 32000, action: () -> Unit) {
         val onDebouncedClickListener = OnDebouncedClickListener(delayInMilliSeconds, action)
         setOnClickListener(onDebouncedClickListener)
     }
+
+
     fun loadNewQuestion ()
     {
-        numberOfAnswer=0
+      numberOfAnswer = 1
+
+        nextQuestionButton.setOnClickListener(null)
+
+
         currentQuestion = questionList.getNewQuestion()
-        questionTextView.text= currentQuestion!!.questionText
-        answerButton1.setImageResource(currentQuestion!!.alternative1)
-        answerButton2.setImageResource(currentQuestion!!.alternative2)
-        answerButton3.setImageResource(currentQuestion!!.alternative3)
-        answerButton4.setImageResource(currentQuestion!!.alternative4)
-        answerButton5.setImageResource(currentQuestion!!.alternative5)
-        answerButton6.setImageResource(currentQuestion!!.alternative6)
-        answerButton7.setImageResource(currentQuestion!!.alternative7)
-        answerButton8.setImageResource(currentQuestion!!.alternative8)
-        answerButton9.setImageResource(currentQuestion!!.alternative9)
+            // view text timer(fråga texten visas efter att bilderna göms)
+
+            object : CountDownTimer(9000, 1000) {
+
+
+               override fun onTick(millisUntilFinished: Long) {
+                    questionTextView.text = "Look at the pictures carefully".toString()
+                }
+
+                override fun onFinish() {
+                    questionTextView.text = currentQuestion!!.questionText
+                }
+            }.start()
+
+            //count down timer(tiden som finns kvar till att svara visas)
+            object : CountDownTimer(30000, 1000) {
+
+                override fun onTick(millisUntilFinished: Long) {
+                    timerTextView.setText("seconds remaining to answer: " + millisUntilFinished / 1000)
+                }
+
+                override fun onFinish() {
+
+                    nextQuestionButton.setOnClickListener()
+                    {
+                        loadNewQuestion()
+                    }
+
+
+                    timerTextView.setText("Time is over, Press Next")
+                }
+            }.start()
+
+
+            alternativTimer(
+                answerButton1,
+                currentQuestion!!.backgrund,
+                currentQuestion!!.alternative1
+            )
+            alternativTimer(
+                answerButton2,
+                currentQuestion!!.backgrund,
+                currentQuestion!!.alternative2
+            )
+            alternativTimer(
+                answerButton3,
+                currentQuestion!!.backgrund,
+                currentQuestion!!.alternative3
+            )
+            alternativTimer(
+                answerButton4,
+                currentQuestion!!.backgrund,
+                currentQuestion!!.alternative4
+            )
+            alternativTimer(
+                answerButton5,
+                currentQuestion!!.backgrund,
+                currentQuestion!!.alternative5
+            )
+            alternativTimer(
+                answerButton6,
+                currentQuestion!!.backgrund,
+                currentQuestion!!.alternative6
+            )
+            alternativTimer(
+                answerButton7,
+                currentQuestion!!.backgrund,
+                currentQuestion!!.alternative7
+            )
+            alternativTimer(
+                answerButton8,
+                currentQuestion!!.backgrund,
+                currentQuestion!!.alternative8
+            )
+            alternativTimer(
+                answerButton9,
+                currentQuestion!!.backgrund,
+                currentQuestion!!.alternative9
+            )
+        answerButton1.apply {
+            setOnDebouncedClickListener {
+                Log.d("check!!!", " dare ziyad mishe $numberOfAnswer")
+                checkAnswer(currentQuestion!!.alternative1)
+
+
+
+
+
+
+            }
+        }
+        answerButton2.apply {
+            setOnDebouncedClickListener {
+                Log.d("check!!!", " dare ziyad mishe $numberOfAnswer")
+
+
+                checkAnswer( currentQuestion!!.alternative2)
+
+            }
+        }
+        answerButton3.apply {
+            setOnDebouncedClickListener {
+
+                checkAnswer( currentQuestion!!.alternative3)
+
+
+            }
+        }
+        answerButton4.apply {
+            setOnDebouncedClickListener {
+
+                checkAnswer( currentQuestion!!.alternative4)
+
+            }
+        }
+        answerButton5.apply {
+            setOnDebouncedClickListener {
+
+                checkAnswer( currentQuestion!!.alternative5)
+
+            }
+        }
+        answerButton6.apply {
+            setOnDebouncedClickListener {
+
+                checkAnswer( currentQuestion!!.alternative6)
+
+            }
+        }
+        answerButton7.apply {
+            setOnDebouncedClickListener {
+
+                checkAnswer( currentQuestion!!.alternative7)
+
+            }
+        }
+        answerButton8.apply {
+            setOnDebouncedClickListener {
+
+                checkAnswer( currentQuestion!!.alternative8)
+
+            }
+        }
+        answerButton9.apply {
+            setOnDebouncedClickListener {
+
+                checkAnswer( currentQuestion!!.alternative9)
+
+            }
+        }
+
+
+
+
+
+
+
+
 
     }
-    fun checkAnswer()
-    {
-        if (numberOfAnswer < currentQuestion?.currectAnswer?.size!!){
-            Toast.makeText(this, "You have just ${currentQuestion?.currectAnswer?.size} selection", Toast.LENGTH_LONG).show()
+    //Den här funktionen kommer visa alla alternativ (Imagebuttons)för bara några sekonder
+    fun alternativTimer( button : ImageButton , image1 : Int,image2 :Int){
 
-            numberOfAnswer =numberOfAnswer+1
+        object : CountDownTimer(1000, 500) {
+
+
+        override fun onTick(millisUntilFinished: Long) {
+                button.setBackgroundResource(image1)
+            }
+
+            override fun onFinish() {
+                    object : CountDownTimer(8000, 1000) {
+
+                    override fun onTick(millisUntilFinished: Long) {
+                        button.setBackgroundResource(image2)
+                    }
+
+                    override fun onFinish() {
+
+                        button.setBackgroundResource(image1)
+                    }
+
+                }.start()
+
+            }
+
+        }.start()
+
+    }
+
+    fun checkAnswer(imageID :Int)
+    {
+
+        if (numberOfAnswer <= currentQuestion?.currectAnswer?.size!!){
+            val restNumberOfSelection = currentQuestion?.currectAnswer?.size!!-numberOfAnswer
+            var isFind : Boolean = false
+
+            Log.d("check!!!","$numberOfAnswer variabeln ändrades")
+            numberOfAnswer +=1
+            for (option in currentQuestion!!.currectAnswer)
+            {
+                if (option == imageID) {
+                    Toast.makeText(applicationContext, "Good job", Toast.LENGTH_SHORT).show()
+                    Log.d("check!!!", " match answer is found")
+                    isFind=true
+
+                }
+
+
+
+
+            }
+            if (isFind==false)
+            {
+                Toast.makeText(this, "Not correct! You have $restNumberOfSelection other choices $numberOfAnswer", Toast.LENGTH_SHORT).show()
+
+            }
+
+
+
+
+
+
+
 
 
         }
-        else
-            Toast.makeText(this, "You have just ${currentQuestion?.currectAnswer?.size} selection", Toast.LENGTH_LONG).show()
+        else {
+                    Toast.makeText(this,"You have no other choice, plz select Next after questions time $numberOfAnswer",Toast.LENGTH_SHORT).show()
+            Log.d("check!!!", "tedade javanha kamel shod")
+
+
+        }
+
+
     }
 
 

@@ -23,6 +23,7 @@ class QuestionList {
             R.drawable.q1_7,
             R.drawable.q1_8,
             R.drawable.q1_9,
+            R.drawable.backgrund,
             listOf(
                 R.drawable.q1_3
             )
@@ -41,6 +42,8 @@ class QuestionList {
             R.drawable.fq2_7,
             R.drawable.fq2_8,
             R.drawable.fq2_9,
+            R.drawable.backgrund,
+
             listOf(
                 R.drawable.fq2_1, R.drawable.fq2_4
             )
@@ -60,6 +63,8 @@ class QuestionList {
             R.drawable.aq3_7,
             R.drawable.aq3_8,
             R.drawable.aq3_9,
+            R.drawable.backgrund,
+
             listOf(
                 R.drawable.aq3_1, R.drawable.aq3_8
             )
@@ -79,6 +84,8 @@ class QuestionList {
             R.drawable.hq4_7,
             R.drawable.hq4_8,
             R.drawable.hq4_9,
+            R.drawable.backgrund,
+
             listOf(
                 R.drawable.hq4_7, R.drawable.hq4_8
             )
@@ -98,6 +105,8 @@ class QuestionList {
             R.drawable.cq5_7,
             R.drawable.cq5_8,
             R.drawable.cq5_9,
+            R.drawable.backgrund,
+
             listOf(
                 R.drawable.cq5_4, R.drawable.cq5_5,R.drawable.cq5_7,R.drawable.cq5_9
             )
@@ -121,4 +130,5 @@ class QuestionList {
         return newQuestion
 
     }
+
 }
