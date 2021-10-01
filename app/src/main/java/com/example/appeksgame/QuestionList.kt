@@ -1,19 +1,22 @@
 package com.example.appeksgame
 
 import Question
+import android.util.Log
 
-class QuestionList {
-    private val questionList= mutableListOf<Question>()
-    private val usedQuestion = mutableListOf<Question>()
+object QuestionList {
+    val questionList= mutableListOf<Question>()
+    val usedQuestion = mutableListOf<Question>()
+    val questionList2= mutableListOf<Question>()
+
 
     init {
         createQuestion()
     }
 
-    private fun createQuestion (){
+     fun createQuestion (){
         val question1 = Question(
             1,
-            "Which president died in a attack",
+            "Which president was killed in the attack?",
             R.drawable.q1_1,
             R.drawable.q1_2,
             R.drawable.q1_3,
@@ -30,9 +33,11 @@ class QuestionList {
 
         )
         questionList.add(question1)
+        questionList2.add(question1)
+
         val question2 = Question(
             2,
-            "who are in the top list of international men's football goal scorers between 2010 and 2021",
+            "Who are among the top international men's soccer scorers between 2010 and 2021?",
             R.drawable.fq2_1,
             R.drawable.fq2_2,
             R.drawable.fq2_3,
@@ -50,10 +55,12 @@ class QuestionList {
 
         )
         questionList.add(question2)
+        questionList2.add(question2)
+
 
         val question3 = Question(
             3,
-            "who are vinner in Oskar 2021?",
+            "Who are the winners of the 2021 Oscars?",
             R.drawable.aq3_1,
             R.drawable.aq3_2,
             R.drawable.aq3_3,
@@ -71,10 +78,12 @@ class QuestionList {
 
         )
         questionList.add(question3)
+        questionList2.add(question3)
+
 
         val question4 = Question(
             4,
-            "Which monuments are not in Europe",
+            "Which monuments are not in Europe?",
             R.drawable.hq4_1,
             R.drawable.hq4_2,
             R.drawable.hq4_3,
@@ -92,36 +101,52 @@ class QuestionList {
 
         )
         questionList.add(question4)
+        questionList2.add(question4)
+
 
         val question5= Question(
             5,
-            "Which car companies are not in Europe",
+            "Which car companies are not in Europe?",
             R.drawable.cq5_1,
             R.drawable.cq5_2,
             R.drawable.cq5_3,
             R.drawable.cq5_4,
             R.drawable.cq5_5,
             R.drawable.cq5_6,
-            R.drawable.cq5_7,
+            R.drawable.cq5_5,
             R.drawable.cq5_8,
             R.drawable.cq5_9,
             R.drawable.backgrund,
 
             listOf(
-                R.drawable.cq5_4, R.drawable.cq5_5,R.drawable.cq5_7,R.drawable.cq5_9
+                R.drawable.cq5_4, R.drawable.cq5_5,R.drawable.cq5_8,R.drawable.cq5_9
             )
 
         )
         questionList.add(question5)
+        questionList2.add(question5)
+
 
     }
     fun getNewQuestion(): Question {
+        /*
         if (questionList.size==0)
         {
             questionList.addAll(usedQuestion)
+            for (question in questionList)
+            {
+                Log.d("a!!!", "${question.questionText}")
+            }
             usedQuestion.clear()
 
         }
+        */
+         if (questionList.isEmpty())
+         {
+             createQuestion()
+             usedQuestion.clear()
+
+         }
 
 
         val rnd = (0 until questionList.size).random()
@@ -130,5 +155,7 @@ class QuestionList {
         return newQuestion
 
     }
+
+
 
 }

@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppeksGame">
         <activity
+            android:name=".ResultRecyckleViewActivity"
+            android:exported="true" />
+        <activity
             android:name=".StartGameActivity"
             android:exported="true" />
         <activity android:name=".MainActivity" />
