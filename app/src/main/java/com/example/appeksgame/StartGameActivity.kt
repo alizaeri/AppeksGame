@@ -37,7 +37,7 @@ class StartGameActivity : AppCompatActivity() {
     var currentQuestion: Question? = null
     var numberOfAnswer: Int = 1
     var numberOfQuestion: Int = 0
-    var score: Int = 0
+    var score: Int=0
 
 
     //
@@ -50,7 +50,7 @@ class StartGameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start_game)
         scoreTextView = findViewById(R.id.scoreTextView)
-        scoreTextView.text = "0"
+
         questionTextView = findViewById(R.id.questionTextView)
         answerButton1 = findViewById(R.id.answerButton1)
         answerButton2 = findViewById(R.id.answerButton2)
@@ -63,6 +63,7 @@ class StartGameActivity : AppCompatActivity() {
         answerButton9 = findViewById(R.id.answerButton9)
         nextQuestionButton = findViewById(R.id.nextQuestionButton)
         timerTextView = findViewById(R.id.timerTextView)
+
 
 
 
@@ -97,13 +98,23 @@ class StartGameActivity : AppCompatActivity() {
         if (numberOfQuestion <= 5) {
             numberOfAnswer = 1
 
-            nextQuestionButton.setOnClickListener(null)
+            answerButton1.setOnClickListener(null)
+            answerButton2.setOnClickListener(null)
+            answerButton3.setOnClickListener(null)
+            answerButton4.setOnClickListener(null)
+            answerButton5.setOnClickListener(null)
+            answerButton6.setOnClickListener(null)
+            answerButton7.setOnClickListener(null)
+            answerButton8.setOnClickListener(null)
+            answerButton9.setOnClickListener(null)
 
-            if (QuestionList.getNewQuestion() != null) {
-                currentQuestion = QuestionList.getNewQuestion()
-            } else (
+
+
+
+            currentQuestion = QuestionList.getNewQuestion()
+
                     Toast.makeText(this, "testing $numberOfAnswer", Toast.LENGTH_SHORT).show()
-                    )
+
             // view text timer(fråga texten visas efter att bilderna göms)
 
             object : CountDownTimer(9000, 1000) {
@@ -114,12 +125,81 @@ class StartGameActivity : AppCompatActivity() {
                 }
 
                 override fun onFinish() {
+
                     questionTextView.text = currentQuestion!!.questionText
+                    answerButton1.apply {
+                        setOnDebouncedClickListener {
+                            Log.d("check!!!", " dare ziyad mishe $numberOfAnswer")
+                            if (checkAnswer(currentQuestion!!.alternative1))
+                                answerButton1.setBackgroundResource(currentQuestion!!.alternative1)
+
+
+                        }
+                    }
+                    answerButton2.apply {
+                        setOnDebouncedClickListener {
+                            Log.d("check!!!", " dare ziyad mishe $numberOfAnswer")
+
+
+                            checkAnswer(currentQuestion!!.alternative2)
+
+                        }
+                    }
+                    answerButton3.apply {
+                        setOnDebouncedClickListener {
+
+                            checkAnswer(currentQuestion!!.alternative3)
+
+
+                        }
+                    }
+                    answerButton4.apply {
+                        setOnDebouncedClickListener {
+
+                            checkAnswer(currentQuestion!!.alternative4)
+
+                        }
+                    }
+                    answerButton5.apply {
+                        setOnDebouncedClickListener {
+
+                            checkAnswer(currentQuestion!!.alternative5)
+
+                        }
+                    }
+                    answerButton6.apply {
+                        setOnDebouncedClickListener {
+
+                            checkAnswer(currentQuestion!!.alternative6)
+
+                        }
+                    }
+                    answerButton7.apply {
+                        setOnDebouncedClickListener {
+
+                            checkAnswer(currentQuestion!!.alternative7)
+
+                        }
+                    }
+                    answerButton8.apply {
+                        setOnDebouncedClickListener {
+
+                            checkAnswer(currentQuestion!!.alternative8)
+
+                        }
+                    }
+                    answerButton9.apply {
+                        setOnDebouncedClickListener {
+
+                            checkAnswer(currentQuestion!!.alternative9)
+
+                        }
+                    }
                 }
             }.start()
 
             //count down timer(tiden som finns kvar till att svara visas)
-            object : CountDownTimer(20000, 1000) {
+            object : CountDownTimer(15000, 1000) {
 
                 override fun onTick(millisUntilFinished: Long) {
                     timerTextView.setText("seconds remaining to answer: " + millisUntilFinished / 1000)
@@ -183,73 +263,7 @@ class StartGameActivity : AppCompatActivity() {
                 currentQuestion!!.backgrund,
                 currentQuestion!!.alternative9
             )
-            answerButton1.apply {
-                setOnDebouncedClickListener {
-                    Log.d("check!!!", " dare ziyad mishe $numberOfAnswer")
-                    checkAnswer(currentQuestion!!.alternative1)
 
-
-                }
-            }
-            answerButton2.apply {
-                setOnDebouncedClickListener {
-                    Log.d("check!!!", " dare ziyad mishe $numberOfAnswer")
-
-
-                    checkAnswer(currentQuestion!!.alternative2)
-
-                }
-            }
-            answerButton3.apply {
-                setOnDebouncedClickListener {
-
-                    checkAnswer(currentQuestion!!.alternative3)
-
-
-                }
-            }
-            answerButton4.apply {
-                setOnDebouncedClickListener {
-
-                    checkAnswer(currentQuestion!!.alternative4)
-
-                }
-            }
-            answerButton5.apply {
-                setOnDebouncedClickListener {
-
-                    checkAnswer(currentQuestion!!.alternative5)
-
-                }
-            }
-            answerButton6.apply {
-                setOnDebouncedClickListener {
-
-                    checkAnswer(currentQuestion!!.alternative6)
-
-                }
-            }
-            answerButton7.apply {
-                setOnDebouncedClickListener {
-
-                    checkAnswer(currentQuestion!!.alternative7)
-
-                }
-            }
-            answerButton8.apply {
-                setOnDebouncedClickListener {
-
-                    checkAnswer(currentQuestion!!.alternative8)
-
-                }
-            }
-            answerButton9.apply {
-                setOnDebouncedClickListener {
-
-                    checkAnswer(currentQuestion!!.alternative9)
-
-                }
-            }
         } else {
             nextQuestionButton.setOnClickListener {
                 val intent = Intent(this, ResultRecyckleViewActivity::class.java)
@@ -291,7 +305,7 @@ class StartGameActivity : AppCompatActivity() {
 
     }
 
-    fun checkAnswer(imageID: Int) {
+    fun checkAnswer(imageID: Int): Boolean {
 
         if (numberOfAnswer <= currentQuestion?.currectAnswer?.size!!) {
             val restNumberOfSelection = currentQuestion?.currectAnswer?.size!! - numberOfAnswer
@@ -302,6 +316,8 @@ class StartGameActivity : AppCompatActivity() {
             for (option in currentQuestion!!.currectAnswer) {
                 if (option == imageID) {
                     score += 1000
+                    scoreTextView.text = score.toString()
+
 
                     Toast.makeText(
                         applicationContext,
@@ -310,8 +326,9 @@ class StartGameActivity : AppCompatActivity() {
                     ).show()
                     Log.d("check!!!", " match answer is found")
                     isFind = true
-
+                    return true
                 }
+
 
 
             }
@@ -336,7 +353,7 @@ class StartGameActivity : AppCompatActivity() {
 
         }
 
-
+return false
     }
 
 

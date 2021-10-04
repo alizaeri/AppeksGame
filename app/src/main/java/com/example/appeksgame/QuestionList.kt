@@ -6,7 +6,7 @@ import android.util.Log
 object QuestionList {
     val questionList= mutableListOf<Question>()
     val usedQuestion = mutableListOf<Question>()
-    val questionList2= mutableListOf<Question>()
+    //val questionList2= mutableListOf<Question>()
 
 
     init {
@@ -33,7 +33,7 @@ object QuestionList {
 
         )
         questionList.add(question1)
-        questionList2.add(question1)
+        //questionList2.add(question1)
 
         val question2 = Question(
             2,
@@ -55,7 +55,7 @@ object QuestionList {
 
         )
         questionList.add(question2)
-        questionList2.add(question2)
+        //questionList2.add(question2)
 
 
         val question3 = Question(
@@ -78,7 +78,7 @@ object QuestionList {
 
         )
         questionList.add(question3)
-        questionList2.add(question3)
+        //questionList2.add(question3)
 
 
         val question4 = Question(
@@ -101,7 +101,7 @@ object QuestionList {
 
         )
         questionList.add(question4)
-        questionList2.add(question4)
+        //questionList2.add(question4)
 
 
         val question5= Question(
@@ -124,7 +124,7 @@ object QuestionList {
 
         )
         questionList.add(question5)
-        questionList2.add(question5)
+       // questionList2.add(question5)
 
 
     }
