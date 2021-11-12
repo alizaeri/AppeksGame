@@ -1,15 +1,15 @@
 package com.example.appeksgame
 
-import Question
 import android.util.Log
 
-object QuestionList {
-    val questionList= mutableListOf<Question>()
-    val usedQuestion = mutableListOf<Question>()
+class QuestionList( private val questionList: MutableList<Question>) {
+
+
+
     //val questionList2= mutableListOf<Question>()
 
 
-    init {
+  /*  init {
         createQuestion()
     }
 
@@ -123,12 +123,14 @@ object QuestionList {
             )
 
         )
+
+
         questionList.add(question5)
        // questionList2.add(question5)
 
+    */
 
-    }
-    fun getNewQuestion(): Question {
+    fun getNewQuestion(): Question? {
         /*
         if (questionList.size==0)
         {
@@ -143,19 +145,18 @@ object QuestionList {
         */
          if (questionList.isEmpty())
          {
-             createQuestion()
-             usedQuestion.clear()
+             //createQuestion()
+             return null
 
          }
 
 
         val rnd = (0 until questionList.size).random()
         val newQuestion = questionList.removeAt(rnd)
-        usedQuestion.add(newQuestion)
         return newQuestion
 
     }
-
-
-
 }
+
+
+
